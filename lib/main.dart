@@ -1,4 +1,5 @@
 import 'package:basededatos/camara.dart';
+import 'package:basededatos/inicio_sesion.dart';
 import 'package:basededatos/registro.dart';
 import 'package:flutter/material.dart';
 import 'alta_productos.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Camara(),
+      home: InicioSesion(),
       navigatorObservers: [FlutterSmartDialog.observer],
       builder: FlutterSmartDialog.init(),
     );

@@ -1,3 +1,4 @@
+import 'package:basededatos/mostrar_ciudad.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -68,7 +69,10 @@ class _CiudadesState extends State<Ciudades> {
             guardar();
           }, child: Text("Guardar")),
           ElevatedButton(onPressed: (){
-
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context){
+                  return Mostrar_Ciudades();
+                }));
           }, child: Text("Ver ciudades"))
         ],
       ),

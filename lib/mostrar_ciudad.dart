@@ -28,6 +28,12 @@ class _Mostrar_CiudadesState extends State<Mostrar_Ciudades> {
   }
 
   Future<List<RegistrosCiudades>> mostrar_ciudad() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      usuario = prefs.getString('id');
+      print(usuario);
+    });
 
     var url = Uri.parse('https://xstracel.com.mx/basededatos/mostrar_ciudad.php');
     var response = await http.post(url, body: {
@@ -47,7 +53,12 @@ class _Mostrar_CiudadesState extends State<Mostrar_Ciudades> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    tomar_datos().then((value) => mostrar_ciudad());
+    mostrar_ciudad().then((value){
+      setState(() {
+        reg.addAll(value);
+        loading = false;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {

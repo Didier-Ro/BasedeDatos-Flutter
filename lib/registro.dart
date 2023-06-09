@@ -19,8 +19,15 @@ class _RegistroState extends State<Registro> {
   var c_pass = TextEditingController();
 
   String? usuario = '';
-  String? correo = '';
-  String? pass = '';
+  String correo = '';
+  String pass = '';
+
+  Future<void> guardar_datos(String correo, String pass) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString('correo', correo);
+    await prefs.setString('pass', pass);
+  }
 
   Future<void> registrarme() async{
     var url = Uri.parse('https://xstracel.com.mx/basededatos/registrar_usuario.php');
@@ -44,6 +51,8 @@ class _RegistroState extends State<Registro> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
       await prefs.setString('id', respuesta['id'].toString());
+
+      guardar_datos(correo, pass);
 
       Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context){
